@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F1912" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ios_map" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,61 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6L0-NU-yiw">
+                                <rect key="frame" x="20" y="570" width="560" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3x-fM-50l">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                        <state key="normal" title="Start"/>
+                                        <connections>
+                                            <action selector="startButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tXH-vh-IbW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjU-Bt-yz6">
+                                        <rect key="frame" x="187" y="0.0" width="186" height="30"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="stopButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qr2-bC-WDE"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S0X-Uz-PmG">
+                                        <rect key="frame" x="373" y="0.0" width="187" height="30"/>
+                                        <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="clearButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T2Q-WU-uaq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6w-GZ-GXV">
+                                <rect key="frame" x="0.0" y="20" width="600" height="550"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6L0-NU-yiw" firstAttribute="top" secondItem="Q6w-GZ-GXV" secondAttribute="bottom" id="FcL-HQ-ZTW"/>
+                            <constraint firstItem="6L0-NU-yiw" firstAttribute="top" secondItem="Q6w-GZ-GXV" secondAttribute="bottom" id="Gep-lN-zHu"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6L0-NU-yiw" secondAttribute="bottom" id="Hb9-j9-phj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6L0-NU-yiw" secondAttribute="trailing" id="csG-BJ-slR"/>
+                            <constraint firstAttribute="trailing" secondItem="Q6w-GZ-GXV" secondAttribute="trailing" id="l1x-9F-W8Z"/>
+                            <constraint firstItem="Q6w-GZ-GXV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="m3e-AQ-OUw"/>
+                            <constraint firstItem="6L0-NU-yiw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="pzW-00-amz"/>
+                            <constraint firstItem="Q6w-GZ-GXV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rSO-6r-696"/>
+                            <constraint firstItem="Q6w-GZ-GXV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sI4-IZ-9w8"/>
+                            <constraint firstItem="Q6w-GZ-GXV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="u5g-CM-vDq"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="clearButton" destination="S0X-Uz-PmG" id="vI3-HL-Ot6"/>
+                        <outlet property="mapView" destination="Q6w-GZ-GXV" id="BWo-L0-hyB"/>
+                        <outlet property="startButton" destination="M3x-fM-50l" id="kyF-PS-oOK"/>
+                        <outlet property="stopButton" destination="hjU-Bt-yz6" id="R0H-U2-8bd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="433" y="390"/>
         </scene>
     </scenes>
 </document>
