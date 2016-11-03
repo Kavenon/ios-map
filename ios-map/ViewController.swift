@@ -26,6 +26,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         mapView.showsUserLocation = true;
     }
     
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let lastLocation = locations.last?.coordinate
+        
+        let marker = MKPointAnnotation()
+            marker.coordinate = lastLocation!
+        mapView.addAnnotation(marker)
+        
+        var delta = 0.0
+        
+        if let speed = locations.last?.speed where speed > 0 {
+            delta = (locations.last?.speed)! / 6300
+        }
+        
+        let locationArea = MKCoordinateRegion(center: lastLocation!, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta))
+        mapView.setRegion(locationArea, animated: true)
+        
+    }
+    
+
     @IBAction func stopButtonAction(sender: AnyObject) {
         stopButton.enabled = false;
         startButton.enabled = true;
@@ -57,26 +78,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            
-        let lastLocation = locations.last?.coordinate
-            
-        let marker = MKPointAnnotation()
-            marker.coordinate = lastLocation!
-            mapView.addAnnotation(marker)
-            
-            var delta = 0.0
-            
-            if let speed = locations.last?.speed where speed > 0 {
-                delta = (locations.last?.speed)! / 5000
-            }
-            
-            let locationArea = MKCoordinateRegion(center: lastLocation!, span: MKCoordinateSpan(latitudeDelta: delta, longitudeDelta: delta))
-            mapView.setRegion(locationArea, animated: true)
-            
-    }
-
-
+   
 }
 
